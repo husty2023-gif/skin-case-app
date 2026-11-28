@@ -57,7 +57,10 @@ document.querySelectorAll(".btn").forEach((btn) => {
 window.addEventListener("contextmenu", (e) => e.preventDefault());
 
 const startPoint = { x: 60, y: 200 };
-const hero = { x: startPoint.x, y: startPoint.y, w: 28, h: 40 };
+const heroImg = new Image();
+heroImg.src = "hero.png";
+
+const hero = { x: startPoint.x, y: startPoint.y, w: 28, h: 56 };
 const speed = 210;
 
 function hits(x, y, o) {
@@ -130,8 +133,8 @@ function loop(now) {
     ctx.fillRect(o.fx * W, o.y, o.w, o.h);
   }
 
-  ctx.fillStyle = "#891496";
-  ctx.fillRect(hero.x, hero.y, hero.w, hero.h);
+  ctx.imageSmoothingEnabled = false;   // чтобы пиксели оставались чёткими
+  ctx.drawImage(heroImg, hero.x, hero.y, hero.w, hero.h);
 
   requestAnimationFrame(loop);
 }

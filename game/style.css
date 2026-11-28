@@ -1,5 +1,5 @@
 html, body { margin: 0; height: 100%; background: #111; overflow: hidden; touch-action: none; }
-canvas { display: block; position: fixed; inset: 0; margin: auto; background: #111; }
+canvas { display: block; position: fixed; inset: 0; margin: auto; background: #111; image-rendering: pixelated;}
 #controls { display: none; }
 
 @media (pointer: coarse) {
