@@ -1,13 +1,16 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-// --- размер: высота мира фиксирована, ширина зависит от экрана ---
+// --- размер мира фиксирован ---
+const W = 800;
 const H = 450;
-let W = 800;
+canvas.width = W;
+canvas.height = H;
+
 function resize() {
-  W = Math.round(H * window.innerWidth / window.innerHeight);
-  canvas.width = W;
-  canvas.height = H;
+  const scale = Math.min(window.innerWidth / W, window.innerHeight / H);
+  canvas.style.width = W * scale + "px";
+  canvas.style.height = H * scale + "px";
 }
 window.addEventListener("resize", resize);
 resize();
