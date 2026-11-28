@@ -55,14 +55,19 @@ window.addEventListener("contextmenu", (e) => e.preventDefault());
 
 const startPoint = { x: 60, y: 200 };
 const hero = { x: startPoint.x, y: startPoint.y, w: 28, h: 40 };
-const speed = 3.5;
+const speed = 210;
 
 function hits(x, y, o) {
   const ox = o.fx * W;
   return x + hero.w > ox && x < ox + o.w && y + hero.h > o.y && y < o.y + o.h;
 }
+ 
+let last = performance.now();
 
-function loop() {
+function loop(now) {
+  const dt = Math.min((now - last) / 1000, 0.05); // секунд с прошлого кадра
+  last = now;
+
   const room = rooms[current];
 
   // направление движения
@@ -74,10 +79,10 @@ function loop() {
   if (dx !== 0 && dy !== 0) { dx *= 0.7071; dy *= 0.7071; } // по диагонали не быстрее
 
   // двигаем по осям отдельно, чтобы можно было скользить вдоль стен
-  let nx = hero.x + dx * speed;
+  let nx = hero.x + dx * speed * dt;
   if (!room.obstacles.some(o => hits(nx, hero.y, o))) hero.x = nx;
 
-  let ny = hero.y + dy * speed;
+  let ny = hero.y + dy * speed * dt;
   if (!room.obstacles.some(o => hits(hero.x, ny, o))) hero.y = ny;
 
   // верх и низ: стены
@@ -127,4 +132,4 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
-loop();
+requestAnimationFrame(loop);
