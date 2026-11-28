@@ -35,7 +35,7 @@ export default function HomeScreen() {
         <ThemedView style={styles.heroSection}>
           <AnimatedIcon />
           <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
+            Welcome to&nbsp;Expo DEFTONES
           </ThemedText>
         </ThemedView>
 
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     gap: Spacing.four,
   },
   title: {
-    textAlign: 'center',
+    textAlign: 'center', color: 'blue'
   },
   code: {
     textTransform: 'uppercase',
