@@ -68,6 +68,7 @@ function hits(x, y, o) {
 let last = performance.now();
 
 function loop(now) {
+  frames++
   const dt = Math.min((now - last) / 1000, 0.05); // секунд с прошлого кадра
   last = now;
 
@@ -136,3 +137,5 @@ function loop(now) {
 }
 
 requestAnimationFrame(loop);
+let frames = 0;
+setInterval(() => { console.log("fps:", frames); frames = 0; }, 1000);
