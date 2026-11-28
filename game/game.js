@@ -41,6 +41,18 @@ window.addEventListener("keydown", (e) => {
 });
 window.addEventListener("keyup", (e) => { keys[e.code] = false; });
 
+// --- экранные кнопки ---
+document.querySelectorAll(".btn").forEach((btn) => {
+  const code = btn.dataset.key;
+  const press = (e) => { e.preventDefault(); keys[code] = true; };
+  const release = (e) => { e.preventDefault(); keys[code] = false; };
+  btn.addEventListener("pointerdown", press);
+  btn.addEventListener("pointerup", release);
+  btn.addEventListener("pointercancel", release);
+  btn.addEventListener("pointerleave", release);
+});
+window.addEventListener("contextmenu", (e) => e.preventDefault());
+
 const startPoint = { x: 60, y: 200 };
 const hero = { x: startPoint.x, y: startPoint.y, w: 28, h: 40 };
 const speed = 3.5;
